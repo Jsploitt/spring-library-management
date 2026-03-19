@@ -8,7 +8,10 @@ import lombok.Data;
 @Data
 public class AudioBook extends Book {
 
+    @Column(name = "duration")
     private Integer duration;
+
+    @Column(name = "narrator")
     private String narrator;
 
     public AudioBook() {}

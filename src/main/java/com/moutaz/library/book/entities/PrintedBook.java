@@ -11,6 +11,7 @@ public class PrintedBook extends Book {
     @Column(name = "num_of_pages")
     private Integer numOfPages;
 
+    @Column(name = "hardcover")
     private Boolean hardcover;
 
     public PrintedBook() {}
