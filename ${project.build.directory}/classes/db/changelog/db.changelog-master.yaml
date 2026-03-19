@@ -1,0 +1,7 @@
+databaseChangeLog:
+  - include:
+      file: db/changelog/changes/001-create-book-tables.xml
+  - include:
+      file: db/changelog/changes/002-add-book-type-column.xml
+  - include:
+      file: db/changelog/changes/003-create-book-subtype-tables.xml
