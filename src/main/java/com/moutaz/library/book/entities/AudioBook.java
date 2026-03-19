@@ -13,13 +13,4 @@ public class AudioBook extends Book {
 
     @Column(name = "narrator")
     private String narrator;
-
-    public AudioBook() {}
-
-    public AudioBook(Integer isbn, String author, String title,
-                     String genre, Integer duration, String narrator) {
-        super(isbn, author, title, genre);
-        this.duration = duration;
-        this.narrator = narrator;
-    }
 }

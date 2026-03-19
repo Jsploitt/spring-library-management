@@ -13,13 +13,4 @@ public class EBook extends Book {
 
     @Column(name = "size_mb")
     private Integer sizeMb;
-
-    public EBook() {}
-
-    public EBook(Integer isbn, String author, String title,
-                 String genre, Integer numOfPages, Integer sizeMb) {
-        super(isbn, author, title, genre);
-        this.numOfPages = numOfPages;
-        this.sizeMb = sizeMb;
-    }
 }
