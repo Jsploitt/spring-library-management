@@ -1,4 +1,4 @@
-package com.moutaz.library.book.domain;
+package com.moutaz.library.book.entities;
 
 import jakarta.persistence.*;
 

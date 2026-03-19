@@ -1,6 +1,6 @@
 package com.moutaz.library.book.service;
 
-import com.moutaz.library.book.domain.*;
+import com.moutaz.library.book.entities.*;
 import com.moutaz.library.book.dto.BookRequest;
 import com.moutaz.library.book.repository.BookRepository;
 import org.springframework.http.HttpStatus;

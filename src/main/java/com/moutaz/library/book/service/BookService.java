@@ -1,6 +1,6 @@
 package com.moutaz.library.book.service;
 
-import com.moutaz.library.book.domain.Book;
+import com.moutaz.library.book.entities.Book;
 import com.moutaz.library.book.dto.BookRequest;
 
 import java.util.List;
