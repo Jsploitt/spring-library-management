@@ -1,9 +1,11 @@
 package com.moutaz.library.book.entities;
 
 import jakarta.persistence.*;
+import lombok.Data;
 
 @Entity
 @Table(name = "e_book")
+@Data
 public class EBook extends Book {
 
     @Column(name = "num_of_pages")
@@ -20,10 +22,4 @@ public class EBook extends Book {
         this.numOfPages = numOfPages;
         this.sizeMb = sizeMb;
     }
-
-    public Integer getNumOfPages()               { return numOfPages; }
-    public void setNumOfPages(Integer numOfPages){ this.numOfPages = numOfPages; }
-
-    public Integer getSizeMb()                   { return sizeMb; }
-    public void setSizeMb(Integer sizeMb)        { this.sizeMb = sizeMb; }
 }

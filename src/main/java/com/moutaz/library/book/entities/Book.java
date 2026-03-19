@@ -1,11 +1,13 @@
 package com.moutaz.library.book.entities;
 
 import jakarta.persistence.*;
+import lombok.Data;
 
 @Entity
 @Table(name = "book")
 @Inheritance(strategy = InheritanceType.JOINED)
 @DiscriminatorColumn(name = "book_type")
+@Data
 public abstract class Book {
 
     @Id
@@ -52,21 +54,4 @@ public abstract class Book {
         int n4 = isbn % 10;
         return (n1 * 3 + n2 * 2 + n3 * 1) % 4 == n4;
     }
-
-    // ── Getters & Setters ─────────────────────────────────────
-    public Long getId()                  { return id; }
-
-    public Integer getIsbn()             { return isbn; }
-    public void setIsbn(Integer isbn)    { this.isbn = isbn; }
-
-    public String getAuthor()            { return author; }
-    public void setAuthor(String author) { this.author = author; }
-
-    public String getTitle()             { return title; }
-    public void setTitle(String title)   { this.title = title; }
-
-    public String getGenre()             { return genre; }
-    public void setGenre(String genre)   { this.genre = genre; }
-
-    public String getRefCode()           { return refCode; }
 }

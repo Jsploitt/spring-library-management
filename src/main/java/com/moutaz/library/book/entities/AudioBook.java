@@ -1,9 +1,11 @@
 package com.moutaz.library.book.entities;
 
 import jakarta.persistence.*;
+import lombok.Data;
 
 @Entity
 @Table(name = "audio_book")
+@Data
 public class AudioBook extends Book {
 
     private Integer duration;
@@ -17,10 +19,4 @@ public class AudioBook extends Book {
         this.duration = duration;
         this.narrator = narrator;
     }
-
-    public Integer getDuration()             { return duration; }
-    public void setDuration(Integer duration){ this.duration = duration; }
-
-    public String getNarrator()              { return narrator; }
-    public void setNarrator(String narrator) { this.narrator = narrator; }
 }

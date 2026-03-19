@@ -1,9 +1,11 @@
 package com.moutaz.library.book.entities;
 
 import jakarta.persistence.*;
+import lombok.Data;
 
 @Entity
 @Table(name = "printed_book")
+@Data
 public class PrintedBook extends Book {
 
     @Column(name = "num_of_pages")
@@ -29,10 +31,4 @@ public class PrintedBook extends Book {
     public String getCoverType() {
         return hardcover ? "hardcover" : "paperback";
     }
-
-    public Integer getNumOfPages()               { return numOfPages; }
-    public void setNumOfPages(Integer numOfPages){ this.numOfPages = numOfPages; }
-
-    public Boolean getHardcover()                { return hardcover; }
-    public void setHardcover(Boolean hardcover)  { this.hardcover = hardcover; }
 }
