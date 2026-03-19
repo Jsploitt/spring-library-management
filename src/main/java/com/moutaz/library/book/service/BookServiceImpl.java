@@ -13,9 +13,11 @@ import java.util.List;
 public class BookServiceImpl implements BookService {
 
     private final BookRepository bookRepository;
+    private final BookUtilityService bookUtilityService;
 
-    public BookServiceImpl(BookRepository bookRepository) {
+    public BookServiceImpl(BookRepository bookRepository, BookUtilityService bookUtilityService) {
         this.bookRepository = bookRepository;
+        this.bookUtilityService = bookUtilityService;
     }
 
     @Override
@@ -26,16 +28,27 @@ public class BookServiceImpl implements BookService {
         }
 
         Book book = switch (request.getBookType().toUpperCase()) {
-            case "AUDIO" -> new AudioBook(
-                    request.getIsbn(), request.getAuthor(), request.getTitle(),
-                    request.getGenre(), request.getDuration(), request.getNarrator());
-            case "PRINTED" -> new PrintedBook(
-                    request.getIsbn(), request.getAuthor(), request.getTitle(),
-                    request.getGenre(), request.getNumOfPages(),
-                    request.getHardcover() != null && request.getHardcover());
-            case "EBOOK" -> new EBook(
-                    request.getIsbn(), request.getAuthor(), request.getTitle(),
-                    request.getGenre(), request.getNumOfPages(), request.getSizeMb());
+            case "AUDIO" -> {
+                AudioBook audioBook = new AudioBook();
+                populateCommonFields(audioBook, request);
+                audioBook.setDuration(request.getDuration());
+                audioBook.setNarrator(request.getNarrator());
+                yield audioBook;
+            }
+            case "PRINTED" -> {
+                PrintedBook printedBook = new PrintedBook();
+                populateCommonFields(printedBook, request);
+                printedBook.setNumOfPages(request.getNumOfPages());
+                printedBook.setHardcover(request.getHardcover() != null && request.getHardcover());
+                yield printedBook;
+            }
+            case "EBOOK" -> {
+                EBook eBook = new EBook();
+                populateCommonFields(eBook, request);
+                eBook.setNumOfPages(request.getNumOfPages());
+                eBook.setSizeMb(request.getSizeMb());
+                yield eBook;
+            }
             default -> throw new ResponseStatusException(HttpStatus.BAD_REQUEST,
                     "Invalid book type. Must be AUDIO, PRINTED, or EBOOK");
         };
@@ -69,5 +82,13 @@ public class BookServiceImpl implements BookService {
     @Override
     public long countByAuthor(String author) {
         return bookRepository.findByAuthorIgnoreCase(author).size();
+    }
+
+    private void populateCommonFields(Book book, BookRequest request) {
+        book.setIsbn(request.getIsbn());
+        book.setAuthor(request.getAuthor());
+        book.setTitle(request.getTitle());
+        book.setGenre(request.getGenre());
+        book.setRefCode(bookUtilityService.generateRefCode(request.getAuthor(), request.getGenre()));
     }
 }
