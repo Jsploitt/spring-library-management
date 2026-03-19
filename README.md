@@ -51,22 +51,22 @@ Liquibase will apply all migrations automatically on startup. The API is availab
 
 Base path: `/api/v1/books`
 
-| Method   | Endpoint                        | Description                              | Status codes       |
-|----------|---------------------------------|------------------------------------------|--------------------|
-| `POST`   | `/api/v1/books`                 | Add a new book                           | `201`, `400`, `409` |
-| `GET`    | `/api/v1/books/{isbn}`          | Get a book by ISBN                       | `200`, `404`       |
-| `GET`    | `/api/v1/books?genre={genre}`   | Get all books by genre                   | `200`              |
-| `GET`    | `/api/v1/books/count?author={author}` | Count books by author             | `200`              |
-| `DELETE` | `/api/v1/books/{isbn}`          | Delete a book by ISBN                    | `204`, `404`       |
+| Method   | Endpoint                              | Description                   | Status codes        |
+|----------|---------------------------------------|-------------------------------|---------------------|
+| `POST`   | `/api/v1/books`                       | Add a new book                | `201`, `400`, `409` |
+| `GET`    | `/api/v1/books/{isbn}`                | Get a book by ISBN            | `200`, `404`        |
+| `GET`    | `/api/v1/books?genre={genre}`         | Get all books by genre        | `200`               |
+| `GET`    | `/api/v1/books/count?author={author}` | Count books by author         | `200`               |
+| `DELETE` | `/api/v1/books/{isbn}`                | Delete a book by ISBN         | `204`, `404`        |
 
 ### POST /api/v1/books — request body
 
-The `type` field determines which subtype is created. Each type requires its own additional fields.
+The `bookType` field determines which subtype is created. Each type requires its own additional fields.
 
 **AudioBook**
 ```json
 {
-  "type": "AUDIO",
+  "bookType": "AUDIO",
   "isbn": 1230,
   "title": "Clean Code",
   "author": "Robert Martin",
@@ -79,7 +79,7 @@ The `type` field determines which subtype is created. Each type requires its own
 **PrintedBook**
 ```json
 {
-  "type": "PRINTED",
+  "bookType": "PRINTED",
   "isbn": 1230,
   "title": "Clean Code",
   "author": "Robert Martin",
@@ -92,7 +92,7 @@ The `type` field determines which subtype is created. Each type requires its own
 **EBook**
 ```json
 {
-  "type": "EBOOK",
+  "bookType": "EBOOK",
   "isbn": 1230,
   "title": "Clean Code",
   "author": "Robert Martin",
@@ -114,11 +114,11 @@ Example: `0200` is valid. `1234` is not.
 
 ### Error responses
 
-| Status | Meaning                                      |
-|--------|----------------------------------------------|
-| `400`  | Invalid book type or failed ISBN validation  |
-| `404`  | No book found for the given ISBN             |
-| `409`  | A book with this ISBN already exists         |
+| Status | Meaning                                                  |
+|--------|----------------------------------------------------------|
+| `400`  | Missing or invalid `bookType`, or failed ISBN validation |
+| `404`  | No book found for the given ISBN                         |
+| `409`  | A book with this ISBN already exists                     |
 
 ---
 
