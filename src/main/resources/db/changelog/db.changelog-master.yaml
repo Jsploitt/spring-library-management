@@ -5,3 +5,5 @@ databaseChangeLog:
       file: db/changelog/changes/002-add-book-type-column.xml
   - include:
       file: db/changelog/changes/003-create-book-subtype-tables.xml
+  - include:
+      file: db/changelog/changes/004-create-security-tables.xml
