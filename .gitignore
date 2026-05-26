@@ -86,3 +86,16 @@ desktop.ini
 codebase-architecture-summary*
 *.age
 .github/agents/
+
+# Postman
+postman/environments/
+postman/globals/
+.postman/
+
+# Build
+target/
+
+# IDE
+.idea/dataSources/
+.idea/httpRequests/
+.vscode/

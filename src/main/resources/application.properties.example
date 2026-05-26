@@ -3,3 +3,10 @@ spring.datasource.driver-class-name=com.mysql.cj.jdbc.Driver
 spring.datasource.username=user
 spring.datasource.password=password
 spring.liquibase.change-log=classpath:db/changelog/db.changelog-master.yaml
+
+
+# JWT Configuration
+app.jwt.secret=${JWT_SECRET:default-secret-key-change-in-production-minimum-256-bits-required-for-hs256}
+app.jwt.expiration-ms=86400000
+app.jwt.token-prefix=Bearer
+app.jwt.header-name=Authorization
